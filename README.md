@@ -1,2 +1,1 @@
-# shopping-app
-Shopping app 
+# shopping-list-backend
