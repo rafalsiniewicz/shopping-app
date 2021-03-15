@@ -7,7 +7,7 @@ from django.contrib.auth.password_validation import validate_password
 
 class RegisterSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(
-        required=True,
+        required=False,
         validators=[UniqueValidator(queryset=User.objects.all())]
     )
 
@@ -18,8 +18,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
         extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True}
+            'first_name': {'required': False},
+            'last_name': {'required': False},
+            'username': {'required': True}
         }
 
     def validate(self, attrs):
