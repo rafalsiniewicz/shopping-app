@@ -1,1 +1,1 @@
-web: gunicorn shop-app-list.wsgi
+web: gunicorn shopping_list_backend.wsgi
