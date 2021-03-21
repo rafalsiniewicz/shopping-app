@@ -6,7 +6,7 @@ def gen_access_code():
     while True:
         code = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
         if ShoppingList.objects.filter(access_code=code).count() == 0:
-            break;
+            break
     return code
 
 class ShoppingList(models.Model):
