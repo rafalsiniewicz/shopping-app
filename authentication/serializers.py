@@ -6,17 +6,16 @@ from django.contrib.auth.password_validation import validate_password
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(
-        required=False,
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
-
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
 
     class Meta:
+        email = serializers.EmailField(
+            required=False,
+            validators=[UniqueValidator(queryset=User.objects.all())]
+        )
         model = User
-        fields = ('username', 'password', 'password2', 'email', 'first_name', 'last_name')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'password2')
         extra_kwargs = {
             'first_name': {'required': False},
             'last_name': {'required': False},
@@ -41,6 +40,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
+
+
+class DeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
