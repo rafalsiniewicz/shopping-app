@@ -6,7 +6,8 @@ from .models import ShoppingList, ListItem
 class ShoppingListSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShoppingList
-        fields = ('name', 'access_code')
+        fields = ('id', 'name', 'owner')
+
 
 class ListItemSerializer(serializers.ModelSerializer):
     class Meta:
