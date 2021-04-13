@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -49,14 +51,26 @@ class DeleteSerializer(serializers.ModelSerializer):
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
-    @classmethod
-    def get_token(cls, user):
-        token = super(MyTokenObtainPairSerializer, cls).get_token(user)
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
 
-        # Add custom claims
-        token['username'] = user.username
+        # Add extra responses here
+        data['username'] = self.user.username
+        data['id'] = self.user.id
+        return data
 
-        # return token
+    # @classmethod
+    # def get_token(cls, user):
+    #     token = super().get_token(user)
+    #
+    #     # Add custom claims
+    #     token['username'] = user.username
+    #     token['id'] = user.id
+    #
+    #     return token
         # return Response({
         #     'access': token.access_token,
         #     'user_id': user.id,

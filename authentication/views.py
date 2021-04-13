@@ -24,7 +24,7 @@ class RegisterView(generics.CreateAPIView):
 
 class MyObtainTokenPairView(TokenObtainPairView):
     """
-    Returns access, refresh, user_id for logged user.
+    Returns access, refresh, username, user_id for logged user.
     """
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
