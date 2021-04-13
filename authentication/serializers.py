@@ -3,7 +3,7 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
-
+from rest_framework.response import Response
 
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
@@ -15,7 +15,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             validators=[UniqueValidator(queryset=User.objects.all())]
         )
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'password2')
+        fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'password2')
         extra_kwargs = {
             'first_name': {'required': False},
             'last_name': {'required': False},
@@ -55,4 +55,12 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         # Add custom claims
         token['username'] = user.username
-        return token
+
+        # return token
+        # return Response({
+        #     'access': token.access_token,
+        #     'user_id': user.id,
+        #     'email': user.email
+        # })
+
+

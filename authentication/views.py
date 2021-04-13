@@ -6,9 +6,15 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 
+
+
 class UsersViewSet(viewsets.ModelViewSet):
+    """
+    Returns a list of all users.
+    """
     queryset = User.objects.all()
     serializer_class = RegisterSerializer
+
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -17,10 +23,13 @@ class RegisterView(generics.CreateAPIView):
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
+    """
+    Returns access, refresh, user_id for logged user.
+    """
     permission_classes = (AllowAny,)
     serializer_class = MyTokenObtainPairSerializer
 
 class DeleteUserView(generics.DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = DeleteSerializer
-    lookup_field = 'username'
+    lookup_field = 'id'
