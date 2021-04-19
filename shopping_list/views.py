@@ -36,18 +36,6 @@ class ShoppingListViewSet(viewsets.ModelViewSet):
 
         return queryset
 
-    def put(self, request, pk):
-        """
-        Handles updating an object.
-        """
-        shopping_list = self.get_object(pk)
-        serializer = ShoppingListSerializer(shopping_list, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 class EditShoppingList(UpdateAPIView):
     queryset = ShoppingList.objects.all().order_by('name')
     serializer_class = ShoppingListSerializer
