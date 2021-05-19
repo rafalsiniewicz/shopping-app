@@ -33,11 +33,16 @@ ALLOWED_HOSTS = ['*']
 AUTHENTICATION_BACKENDS = (
     ('django.contrib.auth.backends.ModelBackend'),
 )
-
+CORS_ALLOW_ALL_ORIGINS = True
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = [
-    'https://shop-app-list.herokuapp.com/items/<id>',
-    'http://localhost:3000'
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
 ]
 
 # Application definition
@@ -66,8 +71,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'shopping_list_backend.urls'
-
-CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES = [
     {
