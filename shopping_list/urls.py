@@ -15,4 +15,5 @@ urlpatterns = [
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('auth/', include('authentication.urls')),
     path('shopping-lists/edit/<int:pk>', views.EditShoppingList.as_view(), name='edit_list'),
+    # path('items/<id>', views.ItemsInListViewSet.as_view())
 ]
