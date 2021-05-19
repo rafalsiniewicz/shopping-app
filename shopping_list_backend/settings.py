@@ -35,6 +35,9 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = [
+    'https://shop-app-list.herokuapp.com/items/<id>'
+]
 
 # Application definition
 
