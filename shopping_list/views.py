@@ -29,7 +29,7 @@ class ShoppingListViewSet(viewsets.ModelViewSet):
         params_to_filter = {}
         for fp in self.FILTER_PARAMS:
             param = self.request.query_params.get(fp)
-            if param is not None:
+            if param is not None:   # pragma: no cover
                 params_to_filter[fp] = param
 
         queryset = queryset.filter(**params_to_filter)
@@ -62,7 +62,7 @@ class ItemsInListViewSet(viewsets.ModelViewSet):
         params_to_filter = {}
         for fp in self.FILTER_PARAMS:
             param = self.request.query_params.get(fp)
-            if param is not None:
+            if param is not None:   # pragma: no cover
                 params_to_filter[fp] = param
 
         queryset = queryset.filter(**params_to_filter)

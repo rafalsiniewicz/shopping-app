@@ -27,4 +27,6 @@ class ListItem(models.Model):
     # id = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
 
     def __str__(self):
-        return self.name
+        return {self.name, self.content, self.is_bought}
+
+

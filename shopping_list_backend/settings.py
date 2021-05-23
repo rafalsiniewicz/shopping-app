@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'shopping_list.apps.ShoppingListConfig'
+    'shopping_list.apps.ShoppingListConfig',
+    'coverage'
 ]
 
 MIDDLEWARE = [
