@@ -44,3 +44,30 @@ class ListItemTest(TestCase):
         sl = self.create_listitem()
         self.assertNotEqual(sl.__str__(), {sl.name, sl.content, "not proper is_bought"})
 
+class UserTest(TestCase):
+
+    def create_user(self, username="user1", first_name="name", last_name="surname", email="example@example.com"):
+        data = {"username": username, "first_name": first_name, "last_name": last_name, "email": email}
+        return User.objects.create(**data)
+
+    def test_user_creation(self):
+        u = self.create_user()
+        self.assertTrue(isinstance(u, User))
+
+    def test_user_username(self):
+        u = self.create_user()
+        self.assertEqual(u.username, "user1")
+
+    def test_user_first_name(self):
+        u = self.create_user()
+        self.assertEqual(u.first_name, "name")
+
+    def test_user_last_name(self):
+        u = self.create_user()
+        self.assertEqual(u.last_name, "surname")
+
+    def test_user_email(self):
+        u = self.create_user()
+        self.assertEqual(u.email, "example@example.com")
+
+
